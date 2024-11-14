@@ -4,7 +4,7 @@ export class ProductsController {
   static async getAllProducts(req, res) {
     const products = await productModel.find({});
     if (products) {
-      res.send(products);
+      res.status(200).send(products);
     } else {
       res.send("No se encontraron productos");
     }
@@ -33,13 +33,21 @@ export class ProductsController {
     .catch((err) => {
       console.log(err, "ERROR");
     });
-  res.send(newProduct);
+    
+  res.status(200).send(newProduct);
   }
 
   static async updateProduct(req, res) {
+
+    console.log('entro al update');
+    
     const { id } = req.params;
+    console.log(id,'id del params');
+    
     const { name, description, price, image, stock } = req.body;
-    const product = await productModel.findByIdAndUpdate(id, {
+    console.log(name, description, price, image, stock);
+    
+    const product = await productModel.findByIdAndUpdate( id, {
       name: name,
       description: description,
       price: price,
@@ -55,7 +63,10 @@ export class ProductsController {
   }
 
   static async deleteProduct(req, res) {
+    
     const { id } = req.params;
+    console.log(id,'id del params');
+    
     const product = await productModel.findByIdAndDelete(id);
     if (product) {
       res.send(product);
