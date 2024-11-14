@@ -25,7 +25,11 @@
     "mongodb": "^6.6.1",
     "mongoose": "^8.3.5",
     "standard": "^17.1.0",
+<<<<<<< HEAD
     "supertest": "^7.0.0"
+=======
+    "vercel": "^37.12.1"
+>>>>>>> 509f9d15680cd1936ba3e388e222742fa464a442
   },
   "devDependencies": {
     "nodemon": "^3.1.3",
