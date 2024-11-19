@@ -61,7 +61,7 @@ it('GET /products - should return all products', async () => {
 })
 
 
-it('GET /products/:id - should return product data for a valid ID', async () => { 
+it('GET BY ID /products/:id - should return product data for a valid ID', async () => { 
       const response = await request(app).get(`/products/${productId}`).send(); 
       
       //-------CHECKS TYPES---------------- 
@@ -95,21 +95,13 @@ it('PUT /products/update - should update a product by ID', async () => {
   expect(response.body).toHaveProperty('name')
 })
 
-
-
-
-
 it('DELETE /products/delete/:id - should delete a product by ID', async () => {
   const response= await request(app).delete(`/products/delete/${productId}`).send()
   expect(response.body).toHaveProperty('name')
 })
 
+})
 
 
-  
 
 
-
-  })
-  
-  
