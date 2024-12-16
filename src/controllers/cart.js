@@ -42,7 +42,7 @@ export class CartController {
           items: [
             {
               productId: productId,
-              quantity: qt,
+              quantity: quantity,
             },
           ],
           totalAmount: 0,
