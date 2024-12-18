@@ -29,6 +29,7 @@ export class loginController {
       res.send({
         status: "success",
         message: "Sesión iniciada con válido",
+        user: user,
         token: token,
       });
     }
