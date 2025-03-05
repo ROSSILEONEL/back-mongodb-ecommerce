@@ -6,11 +6,17 @@ export class CartController {
   static async getCart(req, res) {
     // const {id}= req.query;
     const { id } = req.params;
+    console.log('====================================');
+    console.log('id del req',id);
+    
     //verifico que hay en la cookie 
     if(!id){
       res.status(404).send("No existe el carrito");
     }
     const cart = await cartModel.find({ userId: id });
+  console.log('====================================');
+  console.log('cart',cart);
+  
     if (!cart) {
       res.send("No hay carrito");
     } else {
