@@ -14,26 +14,29 @@ import { createRoles } from "./src/utils/initialSetup.js";
 
 const app = express()
 
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin: "http://localhost:5173"
+}));
 app.use(express.json());
-app.use(cookieParser());
-app.use(
-  session({
-    secret: "secretCode",
-    resave: true,
-    saveUninitialized: true,
+app.use(cookieParser('secretCode'));
+// app.use(
+//   session({
+//     secret: "secretCode",
+//     resave: true,
+//     saveUninitialized: true,
     
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://Siria:Colita@shopping.5n8oq3t.mongodb.net/?retryWrites=true&w=majority&appName=shopping',
-      mongoOptions: {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    ,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 30,
-      httpOnly: true,
-      secure: true }
-  })}))
+//     store: MongoStore.create({ mongoUrl: 'mongodb+srv://Siria:Colita@shopping.5n8oq3t.mongodb.net/?retryWrites=true&w=majority&appName=shopping',
+//       mongoOptions: {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//       }
+//     ,
+//     cookie: {
+//       maxAge: 1000 * 60 * 60 * 24 * 30,
+//       httpOnly: true,
+//       secure: true }
+//   })}))
 
 dotenv.config();
 app.use("/products", productRouter);

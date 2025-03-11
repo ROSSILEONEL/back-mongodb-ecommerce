@@ -4,9 +4,12 @@ import { cartModel } from "../models/cartModel.js";
 export class CartController {
 
   static async getCart(req, res) {
-    // const {id}= req.query;
+   console.log('==============ENTRO AL CART======================');
+   
     const { id } = req.params;
     console.log('====================================');
+    console.log('id del req',req);
+    
     console.log('id del req',id);
     
     //verifico que hay en la cookie 

@@ -56,8 +56,11 @@ import { generateToken } from "../utils/auth.js";
 export class loginController {
   static async signIn(req, res) {
     const { email, password } = req.body;
+console.log('entro al login');
 
     const user = await userModel.findOne({ email }).populate("roles");
+    
+    
 
     if (!user) {
       return res.status(404).send({ status: "error", message: "Usuario no encontrado" });
@@ -77,14 +80,17 @@ export class loginController {
     // Configurar cookie con token
     res.cookie("token", token, {
       httpOnly: true, // La cookie no es accesible por JavaScript en el frontend
-      secure: process.env.NODE_ENV === "production", // Solo en HTTPS en producción
+     
+      signed: false,
       sameSite: "strict", // Evita ataques CSRF
       maxAge: 3600000, // Expira en 1 hora
     });
+      
 
     res.send({
       status: "success",
       message: "Sesión iniciada correctamente",
+      token: token,
       user: user,
     });
   }
