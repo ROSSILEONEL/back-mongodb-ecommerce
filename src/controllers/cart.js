@@ -16,16 +16,17 @@ export class CartController {
     if(!id){
       res.status(404).send("No existe el carrito");
     }
-    const cart = await cartModel.find({ userId: id });
+    // const cart = await cartModel.find({ userId: id });
+    const cart = await cartModel.findOne({ userId: id });
   console.log('====================================');
-  console.log('cart',cart);
+  console.log('cart',cart.items);
   
     if (!cart) {
       res.send("No hay carrito");
     } else {
-     res.cookie("cart", JSON.stringify(cart), { maxAge: 60 * 60 * 1000, signed: true });
+    //  res.cookie("cart", JSON.stringify(cart), { maxAge: 60 * 60 * 1000, signed: true });
     
-     res.cookie("userId", JSON.stringify(id), { maxAge: 60 * 60 * 1000, signed: true });
+    //  res.cookie("userId", JSON.stringify(id), { maxAge: 60 * 60 * 1000, signed: true });
       res.status(200).send(cart);
     }
   }
